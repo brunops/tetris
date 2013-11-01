@@ -15,4 +15,9 @@ Piece.shapes = [
 
 Piece.prototype.getBody = function() {
   return this.body;
-}
+};
+
+Piece.prototype.rotate90 = function() {
+  this.body = _.zip.apply(this, this.body.reverse());
+  return this;
+};

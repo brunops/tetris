@@ -34,7 +34,7 @@ describe("Piece", function() {
     });
   });
 
-  describe("piece information", function() {
+  describe("behavior", function() {
 
     it("new Piece(0) initializes the T piece", function() {
       var theT = new Piece(0);
@@ -61,6 +61,14 @@ describe("Piece", function() {
 
       expect(newPiece.getBody()).toBeDefined();
       expect(theT.getBody()).toNotEqual(newPiece.getBody());
+    });
+
+    describe(".rotate90() rotates clockwise", function() {
+      it("calls are chainable", function() {
+        var theL = new Piece(3);
+        expect(theL.rotate90().getBody()).toEqual([[1, 1, 1, 1], [0, 0, 0, 1]]);
+      });
+
     });
 
   });
