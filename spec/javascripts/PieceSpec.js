@@ -25,4 +25,8 @@ describe("Piece", function() {
   it("fourth shape represents the L piece", function() {
     expect(piece.shapes[3]).toEqual([[1, 1], [1, 0], [1, 0], [1, 0]]);
   });
+
+  it("fifth shape represents the mirrored L piece", function() {
+    expect(piece.shapes[4]).toEqual([[1, 1], [0, 1], [0, 1], [0, 1]]);
+  });
 });
