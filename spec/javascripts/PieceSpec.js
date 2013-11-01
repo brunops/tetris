@@ -76,6 +76,12 @@ describe("Piece", function() {
         theL.rotate90();
         expect(originalLShape).toEqual(Piece.shapes[3]);
       });
+
+      it("and after 4 calls, shape is back to its original state", function() {
+        var theL = new Piece(3);
+
+        expect(theL.rotate90().rotate90().rotate90().rotate90().getBody()).toEqual(Piece.shapes[3]);
+      });
     });
 
   });
