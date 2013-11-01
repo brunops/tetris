@@ -4,13 +4,40 @@ function Piece(shapeId) {
 }
 
 Piece.shapes = [
-  [[1, 1, 1], [0, 1, 0]],           // The T
-  [[1, 1], [1, 1]],                 // The Square
-  [[1], [1], [1], [1]],             // The Stick
-  [[1, 1], [1, 0], [1, 0], [1, 0]], // The L
-  [[1, 1], [0, 1], [0, 1], [0, 1]], // The mirrored L
-  [[1, 1, 0], [0, 1, 1]],           // The Dog
-  [[0, 1, 1], [1, 1, 0]]            // The mirrored Dog
+  [ // The T
+    [1, 1, 1],
+    [0, 1, 0]
+  ],
+  [ // The Square
+    [1, 1],
+    [1, 1]
+  ],
+  [ // The Stick
+    [1],
+    [1],
+    [1],
+    [1]
+  ],
+  [ // The L
+    [1, 0],
+    [1, 0],
+    [1, 0],
+    [1, 1]
+  ],
+  [ // The mirrored L
+    [0, 1],
+    [0, 1],
+    [0, 1],
+    [1, 1]
+  ],
+  [ // The Dog
+    [0, 1, 1],
+    [1, 1, 0]
+  ],
+  [ // The mirrored Dog
+    [1, 1, 0],
+    [0, 1, 1]
+  ]
 ];
 
 Piece.prototype.getBody = function() {

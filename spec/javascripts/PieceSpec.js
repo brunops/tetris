@@ -18,19 +18,19 @@ describe("Piece", function() {
     });
 
     it("fourth shape represents the L piece", function() {
-      expect(Piece.shapes[3]).toEqual([[1, 1], [1, 0], [1, 0], [1, 0]]);
+      expect(Piece.shapes[3]).toEqual([[1, 0], [1, 0], [1, 0], [1, 1]]);
     });
 
     it("fifth shape represents the mirrored L piece", function() {
-      expect(Piece.shapes[4]).toEqual([[1, 1], [0, 1], [0, 1], [0, 1]]);
+      expect(Piece.shapes[4]).toEqual([[0, 1], [0, 1], [0, 1], [1, 1]]);
     });
 
     it("sixth shape represents the dog piece", function() {
-      expect(Piece.shapes[5]).toEqual([[1, 1, 0], [0, 1, 1]]);
+      expect(Piece.shapes[5]).toEqual([[0, 1, 1], [1, 1, 0]]);
     });
 
     it("seventh shape represents the mirrored dog piece", function() {
-      expect(Piece.shapes[6]).toEqual([[0, 1, 1], [1, 1, 0]]);
+      expect(Piece.shapes[6]).toEqual([[1, 1, 0], [0, 1, 1]]);
     });
   });
 
@@ -66,7 +66,7 @@ describe("Piece", function() {
     describe(".rotate90() rotates clockwise", function() {
       it("calls are chainable", function() {
         var theL = new Piece(3);
-        expect(theL.rotate90().getBody()).toEqual([[1, 1, 1, 1], [0, 0, 0, 1]]);
+        expect(theL.rotate90().getBody()).toEqual([[1, 1, 1, 1], [1, 0, 0, 0]]);
       });
 
     });
