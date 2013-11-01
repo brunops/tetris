@@ -33,4 +33,8 @@ describe("Piece", function() {
   it("sixth shape represents the dog piece", function() {
     expect(piece.shapes[5]).toEqual([[1, 1, 0], [0, 1, 1]]);
   });
+
+  it("seventh shape represents the mirrored dog piece", function() {
+    expect(piece.shapes[6]).toEqual([[0, 1, 1], [1, 1, 0]]);
+  });
 });
