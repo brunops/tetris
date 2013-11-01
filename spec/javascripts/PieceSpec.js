@@ -69,6 +69,13 @@ describe("Piece", function() {
         expect(theL.rotate90().getBody()).toEqual([[1, 1, 1, 1], [1, 0, 0, 0]]);
       });
 
+      it("Main shape is not affected by rotate", function() {
+        var originalLShape = Piece.shapes[3].slice(0),
+            theL = new Piece(3);
+
+        theL.rotate90();
+        expect(originalLShape).toEqual(Piece.shapes[3]);
+      });
     });
 
   });

@@ -45,6 +45,6 @@ Piece.prototype.getBody = function() {
 };
 
 Piece.prototype.rotate90 = function() {
-  this.body = _.zip.apply(this, this.body.reverse());
+  this.body = _.zip.apply(this, this.body.slice().reverse());
   return this;
 };
