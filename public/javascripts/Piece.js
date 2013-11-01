@@ -1,4 +1,5 @@
 function Piece(shapeId) {
+  shapeId = typeof shapeId !== 'undefined' ? shapeId : Math.floor(Math.random() * Piece.shapes.length);
   this.body = Piece.shapes[shapeId];
 }
 

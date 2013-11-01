@@ -47,5 +47,18 @@ describe("Piece", function() {
       expect(theT.getBody()).toEqual(Piece.shapes[0]);
     });
 
+    it("new Piece() initializes piece with random shape", function() {
+      var theT = new Piece(0),
+          newPiece;
+      for (var i = 0; i < Piece.shapes.length; i++) {
+        if ((newPiece = new Piece()).getBody() !== theT.getBody()) {
+          break;
+        }
+      }
+
+      expect(newPiece.getBody()).toBeDefined();
+      expect(theT.getBody()).toNotEqual(newPiece.getBody());
+    });
+
   });
 });
