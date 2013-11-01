@@ -17,4 +17,8 @@ describe("Piece", function() {
   it("second shape represents the square piece", function() {
     expect(piece.shapes[1]).toEqual([[1, 1], [1, 1]]);
   });
+
+  it("third shape represents the stick piece", function() {
+    expect(piece.shapes[2]).toEqual([[1], [1], [1], [1]]);
+  });
 });
