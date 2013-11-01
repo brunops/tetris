@@ -40,5 +40,12 @@ describe("Piece", function() {
     });
   });
 
+  describe("piece information", function() {
 
+    it("new Piece(0) initializes the T piece", function() {
+      var theT = new Piece(0);
+      expect(theT.getBody()).toEqual(Piece.shapes[0]);
+    });
+
+  });
 });

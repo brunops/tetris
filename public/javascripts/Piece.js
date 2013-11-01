@@ -1,4 +1,5 @@
-function Piece() {
+function Piece(shapeId) {
+  this.body = Piece.shapes[shapeId];
 }
 
 Piece.shapes = [
@@ -10,3 +11,7 @@ Piece.shapes = [
   [[1, 1, 0], [0, 1, 1]],           // The Dog
   [[0, 1, 1], [1, 1, 0]]            // The mirrored Dog
 ];
+
+Piece.prototype.getBody = function() {
+  return this.body;
+}
