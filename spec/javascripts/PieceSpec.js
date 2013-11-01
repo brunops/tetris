@@ -21,4 +21,8 @@ describe("Piece", function() {
   it("third shape represents the stick piece", function() {
     expect(piece.shapes[2]).toEqual([[1], [1], [1], [1]]);
   });
+
+  it("fourth shape represents the L piece", function() {
+    expect(piece.shapes[3]).toEqual([[1, 1], [1, 0], [1, 0], [1, 0]]);
+  });
 });
