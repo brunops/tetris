@@ -41,6 +41,15 @@ describe("Piece", function() {
       expect(theT.getBody()).toEqual(Piece.shapes[0]);
     });
 
+    it("new Piece(n) initializes piece with corresponding shape", function() {
+      var piece;
+
+      for (var n = 0; n < Piece.shapes.length; n++) {
+        piece = new Piece(n);
+        expect(piece.getBody()).toEqual(Piece.shapes[n]);
+      }
+    });
+
     it("new Piece() initializes piece with random shape", function() {
       var theT = new Piece(0),
           newPiece;
