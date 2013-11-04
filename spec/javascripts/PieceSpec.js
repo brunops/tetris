@@ -63,7 +63,7 @@ describe("Piece", function() {
       expect(theT.getBody()).toNotEqual(newPiece.getBody());
     });
 
-    describe(".rotate90() rotates clockwise", function() {
+    describe(".rotate90() clockwise rotates 90 degrees", function() {
       it("calls are chainable", function() {
         var theL = new Piece(3);
         expect(theL.rotate90().getBody()).toEqual([[1, 1, 1, 1], [1, 0, 0, 0]]);
