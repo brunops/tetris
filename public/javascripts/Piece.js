@@ -48,3 +48,7 @@ Piece.prototype.rotate90 = function() {
   this.body = _.zip.apply(this, this.body.slice().reverse());
   return this;
 };
+
+Piece.prototype.getWidth = function() {
+  return this.body[0].length;
+};

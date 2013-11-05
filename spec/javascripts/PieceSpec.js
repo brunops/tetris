@@ -92,5 +92,12 @@ describe("Piece", function() {
       });
     });
 
+    describe(".getWidth()", function() {
+      it("returns piece width", function() {
+        var piece = new Piece();
+        expect(piece.getWidth()).toBe(piece.getBody()[0].length);
+      });
+    });
+
   });
 });
