@@ -93,11 +93,17 @@ describe("Piece", function() {
     });
 
     describe(".getWidth()", function() {
-      it("returns piece width", function() {
+      it("returns piece max width", function() {
         var piece = new Piece();
         expect(piece.getWidth()).toBe(piece.getBody()[0].length);
       });
+
+      it("may change piece width after a 90 degree rotation", function() {
+        var theT = new Piece(0);
+        expect(theT.rotate90().getWidth()).toBe(2);
+      });
     });
+
 
   });
 });
