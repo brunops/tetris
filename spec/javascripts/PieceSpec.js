@@ -109,6 +109,11 @@ describe("Piece", function() {
         var piece = new Piece();
         expect(piece.getHeight()).toBe(piece.getBody().length);
       });
+
+      it("may change piece height after a 90 degree rotation", function() {
+        var theT = new Piece(0);
+        expect(theT.rotate90().getHeight()).toBe(3);
+      });
     });
 
   });
