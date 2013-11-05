@@ -83,14 +83,13 @@ describe("Piece", function() {
         expect(theL.rotate90().rotate90().rotate90().rotate90().getBody()).toEqual(Piece.shapes[3]);
       });
 
-      it ("the T", function() {
+      it("the T", function() {
         var theT = new Piece(0);
         expect(theT.rotate90().getBody()).toEqual([[0, 1], [1, 1], [0, 1]]);
         expect(theT.rotate90().getBody()).toEqual([[0, 1, 0], [1, 1, 1]]);
         expect(theT.rotate90().getBody()).toEqual([[1, 0], [1, 1], [1, 0]]);
         expect(theT.rotate90().getBody()).toEqual(Piece.shapes[0]);
       });
-
     });
 
   });
