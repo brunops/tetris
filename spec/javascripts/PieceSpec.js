@@ -104,6 +104,12 @@ describe("Piece", function() {
       });
     });
 
+    describe(".getHeight()", function() {
+      it("returns piece max height", function() {
+        var piece = new Piece();
+        expect(piece.getHeight()).toBe(piece.getBody().length);
+      });
+    });
 
   });
 });

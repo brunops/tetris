@@ -52,3 +52,7 @@ Piece.prototype.rotate90 = function() {
 Piece.prototype.getWidth = function() {
   return this.body[0].length;
 };
+
+Piece.prototype.getHeight = function() {
+  return this.body.length;
+};
