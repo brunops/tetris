@@ -32,4 +32,8 @@ describe("Board", function() {
   it("current falling piece is a Piece object", function() {
     expect(board.fallingPiece()).toEqual(jasmine.any(Piece));
   });
+
+  it(".getWidth() returns its width", function() {
+    expect(board.getWidth()).toBe(board.width);
+  });
 });

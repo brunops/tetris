@@ -26,6 +26,10 @@ Board.prototype.getBody = function() {
   return this.body;
 };
 
+Board.prototype.getWidth = function() {
+  return this.width;
+}
+
 Board.prototype.place = function(piece, x, y) {
   for (var row = 0; row < piece.getHeight(); ++row) {
     for (var col = 0; col < piece.getWidth(); ++col) {
