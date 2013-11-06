@@ -24,4 +24,8 @@ describe("Board", function() {
       }
     }
   });
+
+  it("Has a current falling piece", function() {
+    expect(board.fallingPiece()).toBeDefined();
+  });
 });

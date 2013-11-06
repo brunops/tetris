@@ -43,3 +43,7 @@ Board.prototype.print = function() {
     console.log(JSON.stringify(readableBoard[row]));
   }
 };
+
+Board.prototype.fallingPiece = function() {
+  return this.fallingPiece;
+}
