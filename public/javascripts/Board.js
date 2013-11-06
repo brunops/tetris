@@ -16,6 +16,7 @@ Board.prototype.generateBody = function() {
 };
 
 Board.prototype.init = function() {
+  this.piece = new Piece();
   this.width = 10;
   this.height = 20;
   this.body = this.generateBody();
@@ -45,5 +46,5 @@ Board.prototype.print = function() {
 };
 
 Board.prototype.fallingPiece = function() {
-  return this.fallingPiece;
+  return this.piece;
 }

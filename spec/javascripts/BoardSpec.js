@@ -25,7 +25,11 @@ describe("Board", function() {
     }
   });
 
-  it("Has a current falling piece", function() {
+  it("has a current falling piece", function() {
     expect(board.fallingPiece()).toBeDefined();
+  });
+
+  it("current falling piece is a Piece object", function() {
+    expect(board.fallingPiece()).toEqual(jasmine.any(Piece));
   });
 });
