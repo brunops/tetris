@@ -24,3 +24,24 @@ Board.prototype.init = function() {
 Board.prototype.getBody = function() {
   return this.body;
 };
+
+Board.prototype.place = function(piece, x, y) {
+  for (var row = 0; row < piece.getHeight(); ++row) {
+    for (var col = 0; col < piece.getWidth(); ++col) {
+      this.body[x + row][y + col] = piece.getBody()[row][col];
+    }
+  }
+
+  this.print();
+};
+
+Board.prototype.print = function() {
+  var readableBoard = _.map(this.body, function(row) {
+    return _.map(row, function(item) {
+      return item ? '@' : ' ';
+    });
+  });
+  for (var row = 0; row < readableBoard.length; ++row) {
+    console.log(JSON.stringify(readableBoard[row]));
+  }
+};
