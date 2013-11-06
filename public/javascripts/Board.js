@@ -28,7 +28,11 @@ Board.prototype.getBody = function() {
 
 Board.prototype.getWidth = function() {
   return this.width;
-}
+};
+
+Board.prototype.getHeight = function() {
+  return this.height;
+};
 
 Board.prototype.place = function(piece, x, y) {
   for (var row = 0; row < piece.getHeight(); ++row) {
@@ -51,4 +55,4 @@ Board.prototype.print = function() {
 
 Board.prototype.fallingPiece = function() {
   return this.piece;
-}
+};

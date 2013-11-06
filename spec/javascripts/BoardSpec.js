@@ -36,4 +36,8 @@ describe("Board", function() {
   it(".getWidth() returns its width", function() {
     expect(board.getWidth()).toBe(board.width);
   });
+
+  it(".getHeight() return its height", function() {
+    expect(board.getHeight()).toBe(board.height);
+  });
 });
