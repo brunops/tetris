@@ -31,8 +31,6 @@ Board.prototype.place = function(piece, x, y) {
       this.body[x + row][y + col] = piece.getBody()[row][col];
     }
   }
-
-  this.print();
 };
 
 Board.prototype.print = function() {
