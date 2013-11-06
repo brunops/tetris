@@ -40,4 +40,10 @@ describe("Board", function() {
   it(".getHeight() return its height", function() {
     expect(board.getHeight()).toBe(board.height);
   });
+
+  it("has a current position coordinates", function() {
+    var startX = board.getWidth() / 2,
+        startY = 0;
+    expect(board.fallingPosition()).toEqual([startX, startY]);
+  });
 });

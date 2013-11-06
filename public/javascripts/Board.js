@@ -16,10 +16,12 @@ Board.prototype.generateBody = function() {
 };
 
 Board.prototype.init = function() {
-  this.piece = new Piece();
   this.width = 10;
   this.height = 20;
   this.body = this.generateBody();
+
+  this.piece = new Piece();
+  this.position = [this.getWidth() / 2, 0];
 };
 
 Board.prototype.getBody = function() {
@@ -55,4 +57,8 @@ Board.prototype.print = function() {
 
 Board.prototype.fallingPiece = function() {
   return this.piece;
+};
+
+Board.prototype.fallingPosition = function() {
+  return this.position;
 };
