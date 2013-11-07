@@ -21,11 +21,24 @@ Board.prototype.init = function() {
   this.body = this.generateBody();
 
   this.piece = new Piece();
-  this.position = [this.getWidth() / 2, 0];
+  this.position = [0, this.getWidth() / 2];
 };
 
 Board.prototype.getBody = function() {
   return this.body;
+};
+
+Board.prototype.getFullBodyState = function() {
+  var bodyClone = this.body.slice(),
+      fallingPosition = this.fallingPosition();
+
+  for (var row = 0; row < this.piece.getHeight(); ++row) {
+    for (var col = 0; col < this.piece.getWidth(); ++col) {
+      bodyClone[fallingPosition[0] + row][fallingPosition[1] + col] = this.piece.getBody()[row][col];
+    }
+  }
+
+  return bodyClone;
 };
 
 Board.prototype.getWidth = function() {
