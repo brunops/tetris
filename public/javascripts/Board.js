@@ -102,7 +102,9 @@ Board.prototype.movePieceLeft = function() {
 };
 
 Board.prototype.movePieceRight = function() {
-  this.position[1] += 1;
+  if (this.position[1] < this.width - this.piece.getWidth()) {
+    this.position[1] += 1;
+  }
 };
 
 Board.prototype.isEmpty = function() {
