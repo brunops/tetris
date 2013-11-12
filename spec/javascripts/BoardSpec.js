@@ -5,10 +5,15 @@ describe("Board", function() {
     board = new Board();
   });
 
-  it("starts empty (all elements should be zero)", function() {
-    var flattenBoard = _.flatten(board.getBody());
+  describe("#isEmpty", function() {
+    it("returns true if all elements are zero", function() {
+      expect(board.isEmpty()).toBeTruthy();
+    });
 
-    expect(_.all(flattenBoard, function(e) { return e === 0 })).toBeTruthy();
+    it("returns false if any element is not zero", function() {
+      board.body[0][0] = 1;
+      expect(board.isEmpty()).toBeFalsy();
+    });
   });
 
   it(".place(piece, x, y) places piece into boards X and Y coordinates", function() {
@@ -47,12 +52,19 @@ describe("Board", function() {
     expect(board.getFallingPosition()).toEqual([startRow, startCol]);
   });
 
-  it(".getFullBodyState() returns body with fallingPiece printed on getFallingPosition cordinates", function() {
-    var board2 = new Board();
+  describe("#getFullBodyState", function() {
+    it("doesn't change body state (not destructive)", function() {
+      board.getFullBodyState();
+      expect(board.isEmpty()).toBeTruthy();
+    });
 
-    board2.place(board.getFallingPiece(), board.getFallingPosition()[0], board.getFallingPosition()[1]);
+    it("returns body with fallingPiece printed on getFallingPosition cordinates", function() {
+      var board2 = new Board();
 
-    expect(board2.getBody()).toEqual(board.getFullBodyState());
+      board2.place(board.getFallingPiece(), board.getFallingPosition()[0], board.getFallingPosition()[1]);
+
+      expect(board2.getBody()).toEqual(board.getFullBodyState());
+    });
   });
 
   describe("#tick", function() {

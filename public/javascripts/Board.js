@@ -29,13 +29,23 @@ Board.prototype.getBody = function() {
 };
 
 Board.prototype.getFullBodyState = function() {
-  var bodyClone = this.body.slice(),
+  var bodyClone       = this.getFullBodyDeepClone(),
       fallingPosition = this.getFallingPosition();
 
   for (var row = 0; row < this.piece.getHeight(); ++row) {
     for (var col = 0; col < this.piece.getWidth(); ++col) {
       bodyClone[fallingPosition[0] + row][fallingPosition[1] + col] = this.piece.getBody()[row][col];
     }
+  }
+
+  return bodyClone;
+};
+
+Board.prototype.getFullBodyDeepClone = function() {
+  var bodyClone = [];
+
+  for (var row = 0; row < this.getHeight(); ++row) {
+    bodyClone[row] = this.body[row].slice();
   }
 
   return bodyClone;
@@ -93,5 +103,10 @@ Board.prototype.movePieceLeft = function() {
 
 Board.prototype.movePieceRight = function() {
   this.position[1] += 1;
+};
+
+Board.prototype.isEmpty = function() {
+  var flattenBoard = _.flatten(this.body);
+  return _.all(flattenBoard, function(e) { return e === 0 });
 };
 
