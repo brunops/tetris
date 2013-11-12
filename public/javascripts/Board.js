@@ -21,7 +21,7 @@ Board.prototype.init = function() {
   this.body = this.generateBody();
 
   this.piece = new Piece();
-  this.position = [0, this.getWidth() / 2];
+  this.position = this.getStartPosition();
 };
 
 Board.prototype.getBody = function() {
@@ -96,10 +96,18 @@ Board.prototype.tick = function() {
     this.position[0] += 1;
   }
   else {
-    this.place(this.piece, this.position[0], this.position[1]);
-    this.piece = new Piece();
-    this.position = [0, this.getWidth() / 2];
+    this.placeFallingPiece();
+    this.triggerNextPiece();
   }
+};
+
+Board.prototype.placeFallingPiece = function() {
+  this.place(this.piece, this.position[0], this.position[1]);
+};
+
+Board.prototype.triggerNextPiece = function() {
+  this.piece = new Piece();
+  this.position = this.getStartPosition();
 };
 
 Board.prototype.movePieceLeft = function() {
@@ -131,3 +139,7 @@ Board.prototype.canPieceFall = function() {
 
   return !!canPieceFall;
 };
+
+Board.prototype.getStartPosition = function() {
+  return [0, this.getWidth() / 2];
+}
