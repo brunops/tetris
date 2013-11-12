@@ -77,5 +77,8 @@ Board.prototype.fallingPosition = function() {
 };
 
 Board.prototype.tick = function() {
-  this.position[1] += 1;
-}
+  this.position[0] += 1;
+};
+
+
+

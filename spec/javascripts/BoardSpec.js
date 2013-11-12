@@ -63,11 +63,13 @@ describe("Board", function() {
     it("makes current piece fall 1 square", function() {
       var board2 = new Board();
 
-      board2.place(board.fallingPiece(), board.fallingPosition()[0], board.fallingPosition()[1] + 1);
+      board2.place(board.fallingPiece(), board.fallingPosition()[0] + 1, board.fallingPosition()[1]);
       board.tick();
 
       expect(board.getFullBodyState()).toEqual(board2.getBody());
     });
-  })
+  });
+
+
 
 });
