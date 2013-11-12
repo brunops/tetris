@@ -67,6 +67,30 @@ describe("Board", function() {
     });
   });
 
+  describe("#canPieceFall", function() {
+    it("returns true if all next rows for each piece column are free", function() {
+      expect(board.canPieceFall()).toBeTruthy();
+    });
+
+    it("returns false if piece reaches the bottom", function() {
+      var fallingPiece = board.getFallingPiece(),
+          position     = [board.getHeight() - fallingPiece.getHeight(), 5]
+
+      board.setFallingPosition(position[0], position[1]);
+      expect(board.canPieceFall()).toBeFalsy();
+    });
+
+    it("returns false if any next rows after piece skirt on the board are taken", function() {
+      var theSquare = new Piece(1),
+          theSquarePlaceRowIndex = board.getHeight() - theSquare.getHeight();
+
+      board.place(theSquare, theSquarePlaceRowIndex, 0);
+      board.setFallingPosition(theSquarePlaceRowIndex - board.getFallingPiece().getHeight(), 1);
+
+      expect(board.canPieceFall()).toBeFalsy();
+    });
+  });
+
   describe("#tick", function() {
     beforeEach(function() {
       board.tick();
@@ -80,6 +104,7 @@ describe("Board", function() {
 
       expect(board.getFullBodyState()).toEqual(board2.getBody());
     });
+
   });
 
   describe("#movePieceLeft", function() {

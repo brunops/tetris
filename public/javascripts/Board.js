@@ -112,3 +112,15 @@ Board.prototype.isEmpty = function() {
   return _.all(flattenBoard, function(e) { return e === 0 });
 };
 
+Board.prototype.canPieceFall = function() {
+  var pieceSkirt = this.piece.skirt(),
+      nextRowIndex,
+      canPieceFall = true;
+
+  for (var i = 0; i < pieceSkirt.length; ++i) {
+    nextRowIndex = this.position[0] + pieceSkirt[i] + 1;
+    canPieceFall &= nextRowIndex < this.getHeight() && this.body[nextRowIndex][this.position[1]] === 0;
+  }
+
+  return !!canPieceFall;
+};
