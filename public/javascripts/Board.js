@@ -49,10 +49,10 @@ Board.prototype.getHeight = function() {
   return this.height;
 };
 
-Board.prototype.place = function(piece, x, y) {
-  for (var row = 0; row < piece.getHeight(); ++row) {
-    for (var col = 0; col < piece.getWidth(); ++col) {
-      this.body[x + row][y + col] = piece.getBody()[row][col];
+Board.prototype.place = function(piece, row, col) {
+  for (var currentRow = 0; currentRow < piece.getHeight(); ++currentRow) {
+    for (var currentCol = 0; currentCol < piece.getWidth(); ++currentCol) {
+      this.body[row + currentRow][col + currentCol] = piece.getBody()[currentRow][currentCol];
     }
   }
 };
