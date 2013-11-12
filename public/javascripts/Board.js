@@ -92,7 +92,12 @@ Board.prototype.setFallingPosition = function(row, column) {
 };
 
 Board.prototype.tick = function() {
-  this.position[0] += 1;
+  if (this.canPieceFall()) {
+    this.position[0] += 1;
+  }
+  else {
+    this.place(this.piece, this.position[0], this.position[1]);
+  }
 };
 
 Board.prototype.movePieceLeft = function() {

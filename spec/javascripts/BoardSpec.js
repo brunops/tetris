@@ -105,6 +105,15 @@ describe("Board", function() {
       expect(board.getFullBodyState()).toEqual(board2.getBody());
     });
 
+    it("place piece in current position if it cannot go down further", function() {
+      var fallingPiece = board.getFallingPiece(),
+          position     = [board.getHeight() - fallingPiece.getHeight(), 5]
+
+      spyOn(board, 'place');
+      board.setFallingPosition(position[0], position[1]);
+      board.tick();
+      expect(board.place).toHaveBeenCalledWith(fallingPiece, position[0], position[1]);
+    });
   });
 
   describe("#movePieceLeft", function() {
