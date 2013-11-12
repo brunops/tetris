@@ -150,4 +150,8 @@ Board.prototype.canPieceFall = function() {
 
 Board.prototype.getStartPosition = function() {
   return [0, this.getWidth() / 2];
-}
+};
+
+Board.prototype.isFull = function() {
+  return (this.position[0] === 0) && !(this.canPieceFall());
+};

@@ -176,4 +176,18 @@ describe("Board", function() {
       expect(board.getFullBodyState()).toEqual(boardStateWithPieceOnBoundaries);
     });
   });
+
+  describe("#isFull", function() {
+    it("returns false when a brand new piece can fall", function() {
+      expect(board.isFull()).toBe(false);
+    });
+
+    it("returns true when a brand new piece cannot fall", function() {
+      var boardBody = board.getBody();
+      for (var i = 2; i < board.getHeight(); i++) {
+        boardBody[i] = _.map(boardBody[i], function(cell) { return 1; });
+      }
+      expect(board.isFull()).toBe(true);
+    });
+  });
 });
