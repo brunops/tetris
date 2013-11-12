@@ -116,5 +116,11 @@ describe("Piece", function() {
       });
     });
 
+    describe("#skirt", function() {
+      it("returns the lowest row index for each piece column", function() {
+        var square = new Piece(1);
+        expect(square.skirt()).toEqual([1, 1]);
+      });
+    });
   });
 });

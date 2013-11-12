@@ -56,3 +56,7 @@ Piece.prototype.getWidth = function() {
 Piece.prototype.getHeight = function() {
   return this.body.length;
 };
+
+Piece.prototype.skirt = function() {
+  return [1, 1];
+};
