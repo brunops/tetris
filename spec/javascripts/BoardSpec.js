@@ -84,6 +84,15 @@ describe("Board", function() {
       expect(board.getFullBodyState()).toEqual(board2.getBody());
     });
 
+    it("does nothing if moving the piece makes it go out of the board", function() {
+      var board2 = new Board();
+
+      board2.place(board.getFallingPiece(), board.getFallingPosition()[0], 0);
+      board.setFallingPosition(0, 0);
+      board.movePieceLeft();
+
+      expect(board.getFullBodyState()).toEqual(board2.getBody());
+    });
   });
 
 });
