@@ -190,4 +190,12 @@ describe("Board", function() {
       expect(board.isFull()).toBe(true);
     });
   });
+
+  describe("#rotatePiece90", function() {
+    it("rotates falling piece by 90 degrees", function() {
+      spyOn(board.getFallingPiece(), 'rotate90');
+      board.rotatePiece90();
+      expect(board.getFallingPiece().rotate90).toHaveBeenCalled();
+    });
+  });
 });

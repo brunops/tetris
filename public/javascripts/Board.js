@@ -155,3 +155,7 @@ Board.prototype.getStartPosition = function() {
 Board.prototype.isFull = function() {
   return (this.position[0] === 0) && !(this.canPieceFall());
 };
+
+Board.prototype.rotatePiece90 = function() {
+  this.getFallingPiece().rotate90();
+};
