@@ -127,6 +127,30 @@ describe("Piece", function() {
         expect(square.skirt()).toEqual([1, 1]);
       });
 
+      it("the stick", function() {
+        var stick = new Piece(2);
+        expect(stick.skirt()).toEqual([3]);
+      });
+
+      it("the L", function() {
+        var theL = new Piece(3);
+        expect(theL.skirt()).toEqual([3, 3]);
+      });
+
+      it("the mirrored L", function() {
+        var theMirroredL = new Piece(4);
+        expect(theMirroredL.skirt()).toEqual([3, 3]);
+      });
+
+      it("the dog", function() {
+        var theDog = new Piece(5);
+        expect(theDog.skirt()).toEqual([1, 1, 0]);
+      });
+
+      it("the mirrored dog", function() {
+        var theMirroredDog = new Piece(6);
+        expect(theMirroredDog.skirt()).toEqual([0, 1, 1]);
+      });
     });
   });
 });
