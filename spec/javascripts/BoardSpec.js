@@ -105,14 +105,29 @@ describe("Board", function() {
       expect(board.getFullBodyState()).toEqual(board2.getBody());
     });
 
-    it("place piece in current position if it cannot go down further", function() {
-      var fallingPiece = board.getFallingPiece(),
-          position     = [board.getHeight() - fallingPiece.getHeight(), 5]
+    describe("piece can't go further", function() {
+      var fallingPiece, position;
 
-      spyOn(board, 'place');
-      board.setFallingPosition(position[0], position[1]);
-      board.tick();
-      expect(board.place).toHaveBeenCalledWith(fallingPiece, position[0], position[1]);
+      beforeEach(function() {
+        fallingPiece = board.getFallingPiece();
+        position     = [board.getHeight() - fallingPiece.getHeight(), 5];
+
+        spyOn(board, 'place');
+        board.setFallingPosition(position[0], position[1]);
+        board.tick();
+      });
+
+      it("place piece in current position", function() {
+        expect(board.place).toHaveBeenCalledWith(fallingPiece, position[0], position[1]);
+      });
+
+      it("reset falling piece", function() {
+        expect(board.getFallingPiece()).not.toBe(fallingPiece);
+      });
+
+      it("reset falling position", function() {
+        expect(board.getFallingPosition()).not.toEqual(position);
+      });
     });
   });
 

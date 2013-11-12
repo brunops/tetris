@@ -97,6 +97,8 @@ Board.prototype.tick = function() {
   }
   else {
     this.place(this.piece, this.position[0], this.position[1]);
+    this.piece = new Piece();
+    this.position = [0, this.getWidth() / 2];
   }
 };
 
