@@ -151,6 +151,16 @@ describe("Piece", function() {
         var theMirroredDog = new Piece(6);
         expect(theMirroredDog.skirt()).toEqual([0, 1, 1]);
       });
+
+      it("changes after rotating the dog", function() {
+        var theDog = new Piece(5);
+        expect(theDog.rotate90().skirt()).toEqual([1, 2]);
+      });
+
+      it("changes after rotating the stick", function() {
+        var stick = new Piece(2);
+        expect(stick.rotate90().skirt()).toEqual([0, 0, 0, 0]);
+      });
     });
   });
 });
