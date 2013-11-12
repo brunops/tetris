@@ -67,8 +67,16 @@ Board.prototype.place = function(piece, row, col) {
   }
 };
 
-Board.prototype.print = function() {
-  var readableBoard = _.map(this.body, function(row) {
+Board.prototype.printBody = function(body) {
+  this.print(this.getBody());
+};
+
+Board.prototype.printFullBodyState = function(body) {
+  this.print(this.getFullBodyState());
+};
+
+Board.prototype.print = function(body) {
+  var readableBoard = _.map(body, function(row) {
     return _.map(row, function(item) {
       return item ? '@' : ' ';
     });
