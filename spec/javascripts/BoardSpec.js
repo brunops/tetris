@@ -55,5 +55,19 @@ describe("Board", function() {
     expect(board2.getBody()).toEqual(board.getFullBodyState());
   });
 
-  xit(".tick() method makes current piece fall 1 square", function() {});
+  describe("#tick", function() {
+    beforeEach(function() {
+      board.tick();
+    });
+
+    it("makes current piece fall 1 square", function() {
+      var board2 = new Board();
+
+      board2.place(board.fallingPiece(), board.fallingPosition()[0], board.fallingPosition()[1] + 1);
+      board.tick();
+
+      expect(board.getFullBodyState()).toEqual(board2.getBody());
+    });
+  })
+
 });

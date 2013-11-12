@@ -75,3 +75,7 @@ Board.prototype.fallingPiece = function() {
 Board.prototype.fallingPosition = function() {
   return this.position;
 };
+
+Board.prototype.tick = function() {
+  this.position[1] += 1;
+}
