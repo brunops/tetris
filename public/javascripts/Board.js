@@ -30,7 +30,7 @@ Board.prototype.getBody = function() {
 
 Board.prototype.getFullBodyState = function() {
   var bodyClone = this.body.slice(),
-      fallingPosition = this.fallingPosition();
+      fallingPosition = this.getFallingPosition();
 
   for (var row = 0; row < this.piece.getHeight(); ++row) {
     for (var col = 0; col < this.piece.getWidth(); ++col) {
@@ -68,11 +68,11 @@ Board.prototype.print = function() {
   }
 };
 
-Board.prototype.fallingPiece = function() {
+Board.prototype.getFallingPiece = function() {
   return this.piece;
 };
 
-Board.prototype.fallingPosition = function() {
+Board.prototype.getFallingPosition = function() {
   return this.position;
 };
 

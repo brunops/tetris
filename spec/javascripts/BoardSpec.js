@@ -26,11 +26,11 @@ describe("Board", function() {
   });
 
   it("has a current falling piece", function() {
-    expect(board.fallingPiece()).toBeDefined();
+    expect(board.getFallingPiece()).toBeDefined();
   });
 
   it("current falling piece is a Piece object", function() {
-    expect(board.fallingPiece()).toEqual(jasmine.any(Piece));
+    expect(board.getFallingPiece()).toEqual(jasmine.any(Piece));
   });
 
   it(".getWidth() returns its width", function() {
@@ -44,13 +44,13 @@ describe("Board", function() {
   it("has a current position coordinates", function() {
     var startCol = board.getWidth() / 2,
         startRow = 0;
-    expect(board.fallingPosition()).toEqual([startRow, startCol]);
+    expect(board.getFallingPosition()).toEqual([startRow, startCol]);
   });
 
-  it(".getFullBodyState() returns body with fallingPiece printed on fallingPosition cordinates", function() {
+  it(".getFullBodyState() returns body with fallingPiece printed on getFallingPosition cordinates", function() {
     var board2 = new Board();
 
-    board2.place(board.fallingPiece(), board.fallingPosition()[0], board.fallingPosition()[1]);
+    board2.place(board.getFallingPiece(), board.getFallingPosition()[0], board.getFallingPosition()[1]);
 
     expect(board2.getBody()).toEqual(board.getFullBodyState());
   });
@@ -63,7 +63,7 @@ describe("Board", function() {
     it("makes current piece fall 1 square", function() {
       var board2 = new Board();
 
-      board2.place(board.fallingPiece(), board.fallingPosition()[0] + 1, board.fallingPosition()[1]);
+      board2.place(board.getFallingPiece(), board.getFallingPosition()[0] + 1, board.getFallingPosition()[1]);
       board.tick();
 
       expect(board.getFullBodyState()).toEqual(board2.getBody());
@@ -78,11 +78,12 @@ describe("Board", function() {
     it("makes current piece move left by 1 square", function() {
       var board2 = new Board();
 
-      board2.place(board.fallingPiece(), board.fallingPosition()[0], board.fallingPosition()[1] - 1);
+      board2.place(board.getFallingPiece(), board.getFallingPosition()[0], board.getFallingPosition()[1] - 1);
       board.movePieceLeft();
 
       expect(board.getFullBodyState()).toEqual(board2.getBody());
     });
+
   });
 
 });
