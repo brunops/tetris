@@ -93,4 +93,18 @@ describe("Board", function() {
     });
   });
 
+  describe("#movePieceRight", function() {
+    beforeEach(function() {
+      board.movePieceRight();
+    });
+
+    it("makes current piece move right by 1 square", function() {
+      var board2 = new Board();
+
+      board2.place(board.getFallingPiece(), board2.getFallingPosition()[0], board2.getFallingPosition()[1] + 1);
+
+      expect(board.getFullBodyState()).toEqual(board2.getBody());
+    });
+
+  });
 });

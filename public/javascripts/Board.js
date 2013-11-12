@@ -91,3 +91,7 @@ Board.prototype.movePieceLeft = function() {
   }
 };
 
+Board.prototype.movePieceRight = function() {
+  this.position[1] += 1;
+};
+
