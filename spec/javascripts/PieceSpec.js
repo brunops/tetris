@@ -117,10 +117,16 @@ describe("Piece", function() {
     });
 
     describe("#skirt", function() {
-      it("returns the lowest row index for each piece column", function() {
+      it("the T", function() {
+        var theT = new Piece(0);
+        expect(theT.skirt()).toEqual([0, 1, 0]);
+      });
+
+      it("the square", function() {
         var square = new Piece(1);
         expect(square.skirt()).toEqual([1, 1]);
       });
+
     });
   });
 });

@@ -58,5 +58,15 @@ Piece.prototype.getHeight = function() {
 };
 
 Piece.prototype.skirt = function() {
-  return [1, 1];
+  var skirt = [];
+  for (var col = 0; col < this.getWidth(); ++col) {
+    for (var row = this.getHeight() - 1; row >= 0; row--) {
+      if (this.body[row][col]) {
+        skirt.push(row);
+        break;
+      }
+    }
+  }
+
+  return skirt;
 };
