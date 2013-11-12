@@ -78,20 +78,18 @@ describe("Board", function() {
     it("makes current piece move left by 1 square", function() {
       var board2 = new Board();
 
-      board2.place(board.getFallingPiece(), board.getFallingPosition()[0], board.getFallingPosition()[1] - 1);
-      board.movePieceLeft();
+      board2.place(board.getFallingPiece(), board2.getFallingPosition()[0], board2.getFallingPosition()[1] - 1);
 
       expect(board.getFullBodyState()).toEqual(board2.getBody());
     });
 
     it("does nothing if moving the piece makes it go out of the board", function() {
-      var board2 = new Board();
-
-      board2.place(board.getFallingPiece(), board.getFallingPosition()[0], 0);
       board.setFallingPosition(0, 0);
+      var boardStateWithPieceOnBoundaries = board.getFullBodyState().slice();
+
       board.movePieceLeft();
 
-      expect(board.getFullBodyState()).toEqual(board2.getBody());
+      expect(board.getFullBodyState()).toEqual(boardStateWithPieceOnBoundaries);
     });
   });
 
