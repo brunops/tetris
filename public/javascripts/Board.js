@@ -80,5 +80,7 @@ Board.prototype.tick = function() {
   this.position[0] += 1;
 };
 
-
+Board.prototype.movePieceLeft = function() {
+  this.position[1] -= 1;
+};
 
