@@ -162,9 +162,21 @@ Board.prototype.isFull = function() {
 };
 
 Board.prototype.rotatePiece90 = function() {
-  if (!this.willPieceOverlap(this.piece.clone().rotate90(), this.position[0], this.position[1])) {
-    this.piece.rotate90();
+  var rotatedPieceClone = this.piece.clone().rotate90(),
+      rotatedPieceCloneWidth = rotatedPieceClone.getWidth();
+
+  for (var tries = 0; tries < rotatedPieceCloneWidth; tries++) {
+    if (!this.willPieceOverlap(rotatedPieceClone, this.position[0], this.position[1] - tries)
+        && !this.isPieceOutOfBoundaries(rotatedPieceClone, this.position[0], this.position[1] - tries)) {
+      this.setFallingPosition(this.position[0], this.position[1] - tries);
+      this.piece.rotate90();
+      break;
+    }
   }
+};
+
+Board.prototype.isPieceOutOfBoundaries = function(piece, row, col) {
+  return (col + piece.getWidth() > this.getWidth());
 };
 
 Board.prototype.willPieceOverlap = function(piece, row, col) {

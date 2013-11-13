@@ -237,5 +237,13 @@ describe("Board", function() {
       expect(board.getFallingPiece().getWidth()).toBe(1);
     });
 
+    it("try to fit piece in a valid spot when rotation would make the piece go out of boundaries", function() {
+      var theStick = new Piece(2);
+      board.piece = theStick;
+      board.setFallingPosition(0, 9);
+
+      board.rotatePiece90();
+      expect(board.getFallingPosition()).toEqual([0, 6]);
+    });
   });
 });
