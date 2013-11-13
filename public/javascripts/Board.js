@@ -190,3 +190,11 @@ Board.prototype.willPieceOverlap = function(piece, row, col) {
 
   return false;
 };
+
+Board.prototype.clearFullRows = function() {
+  _.each(this.body, function(row, index) {
+    if (!_.contains(row, 0)) {
+      this.body[index] = _.map(row, function(e) { return 0; });
+    }
+  }, this);
+};

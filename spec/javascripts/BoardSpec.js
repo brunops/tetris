@@ -246,4 +246,18 @@ describe("Board", function() {
       expect(board.getFallingPosition()).toEqual([0, 6]);
     });
   });
+
+  describe("#clearFullRows", function() {
+    it("clears all full rows (not a single empty square)", function() {
+      _.each(board.getBody().slice(15), function(row) {
+        for (var i = 0; i < row.length; i++) {
+          row[i] = 1;
+        }
+      });
+
+      board.clearFullRows();
+
+      expect(board.isEmpty()).toBeTruthy();
+    });
+  });
 });
