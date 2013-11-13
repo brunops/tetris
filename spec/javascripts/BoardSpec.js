@@ -16,18 +16,21 @@ describe("Board", function() {
     });
   });
 
-  it(".place(piece, x, y) places piece into boards X and Y coordinates", function() {
-    var x = 5,
-        y = 5,
-        piece = new Piece();
+  describe("#place(piece, row, col)", function() {
+    it("places piece into boards ROW and COLUMN coordinates", function() {
+      var row = 5,
+          col = 5,
+          piece = new Piece();
 
-    board.place(piece, x, y);
+      board.place(piece, row, col);
 
-    for (var row = 0; row < piece.getHeight(); ++row) {
-      for (var col = 0; col < piece.getWidth(); ++col) {
-        expect(board.getBody()[x + row][y + col]).toBe(piece.getBody()[row][col]);
+      for (var currentRow = 0; currentRow < piece.getHeight(); ++currentRow) {
+        for (var currentCol = 0; currentCol < piece.getWidth(); ++currentCol) {
+          expect(board.getBody()[row + currentRow][col + currentCol]).toBe(piece.getBody()[currentRow][currentCol]);
+        }
       }
-    }
+    });
+
   });
 
   it("has a current falling piece", function() {
