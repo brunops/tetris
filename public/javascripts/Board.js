@@ -34,7 +34,9 @@ Board.prototype.getFullBodyState = function() {
 
   for (var row = 0; row < this.piece.getHeight(); ++row) {
     for (var col = 0; col < this.piece.getWidth(); ++col) {
-      bodyClone[fallingPosition[0] + row][fallingPosition[1] + col] = this.piece.getBody()[row][col];
+      if (this.piece.getBody()[row][col]) {
+        bodyClone[fallingPosition[0] + row][fallingPosition[1] + col] = this.piece.getBody()[row][col];
+      }
     }
   }
 

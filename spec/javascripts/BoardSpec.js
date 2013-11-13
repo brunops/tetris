@@ -78,6 +78,17 @@ describe("Board", function() {
 
       expect(board2.getBody()).toEqual(board.getFullBodyState());
     });
+
+    it("falling piece empty spots don't overlap board taken spots", function() {
+      var theSquare = new Piece(1),
+          theT      = new Piece(0);
+
+      board.piece = theT;
+      board.setFallingPosition(17, 1);
+      board.place(theSquare, 18, 0);
+
+      expect(board.getFullBodyState()[18][1]).toBe(1);
+    });
   });
 
   describe("#canPieceFall", function() {
