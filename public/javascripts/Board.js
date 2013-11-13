@@ -125,7 +125,7 @@ Board.prototype.triggerNextPiece = function() {
 };
 
 Board.prototype.movePieceLeft = function() {
-  if (this.position[1]) {
+  if (this.position[1] && !this.willPieceOverlap(this.piece.clone(), this.position[0], this.position[1] - 1)) {
     this.position[1] -= 1;
   }
 };
