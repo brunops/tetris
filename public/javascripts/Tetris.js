@@ -16,7 +16,7 @@ var Tetris = {
   },
 
   bind: function() {
-    $(document).on('keyup', Tetris.handleUserInput)
+    $(document).on('keydown', Tetris.handleUserInput)
   },
 
   start: function() {
