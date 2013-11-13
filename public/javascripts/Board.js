@@ -157,5 +157,19 @@ Board.prototype.isFull = function() {
 };
 
 Board.prototype.rotatePiece90 = function() {
-  this.getFallingPiece().rotate90();
+  if (!this.willPieceOverlap(this.piece.clone().rotate90(), this.position[0], this.position[1])) {
+    this.piece.rotate90();
+  }
+};
+
+Board.prototype.willPieceOverlap = function(piece, row, col) {
+  for (var currentRow = 0; currentRow < piece.getHeight(); currentRow++) {
+    for (var currentCol = 0; currentCol < piece.getWidth(); currentCol++) {
+      if (this.body[row + currentRow][col + currentCol] === 1) {
+        return true;
+      }
+    }
+  }
+
+  return false;
 };
