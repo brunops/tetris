@@ -110,6 +110,7 @@ Board.prototype.tick = function() {
 
   if (!this.canPieceFall()) {
     this.placeFallingPiece();
+    this.clearFullRows();
     this.triggerNextPiece();
   }
 };

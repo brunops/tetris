@@ -138,8 +138,13 @@ describe("Board", function() {
         position     = [board.getHeight() - fallingPiece.getHeight(), 5];
 
         spyOn(board, 'place');
+        spyOn(board, 'clearFullRows');
         board.setFallingPosition(position[0], position[1]);
         board.tick();
+      });
+
+      it("clears rows when they get filled", function() {
+        expect(board.clearFullRows).toHaveBeenCalled();
       });
 
       it("place piece in current position", function() {
