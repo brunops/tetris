@@ -1,6 +1,6 @@
 function Piece(shapeId) {
-  shapeId = typeof shapeId !== 'undefined' ? shapeId : Math.floor(Math.random() * Piece.shapes.length);
-  this.body = Piece.shapes[shapeId];
+  this.shapeId = typeof shapeId !== 'undefined' ? shapeId : Math.floor(Math.random() * Piece.shapes.length);
+  this.body = Piece.shapes[this.shapeId];
 }
 
 Piece.shapes = [
@@ -69,4 +69,10 @@ Piece.prototype.skirt = function() {
   }
 
   return skirt;
+};
+
+Piece.prototype.clone = function() {
+  var pieceClone = new Piece(this.shapeId);
+  pieceClone.body = this.body.slice();
+  return pieceClone;
 };

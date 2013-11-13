@@ -162,5 +162,17 @@ describe("Piece", function() {
         expect(stick.rotate90().skirt()).toEqual([0, 0, 0, 0]);
       });
     });
+
+    describe("#clone", function() {
+      it("returns a clone of the current piece", function() {
+        var stick = new Piece(2);
+        expect(stick.clone()).not.toBe(stick);
+      });
+
+      it("keeps piece current state", function() {
+        var stick = new Piece(2);
+        expect(stick.rotate90().clone().getBody()).toEqual([[1, 1, 1, 1]]);
+      });
+    });
   });
 });
