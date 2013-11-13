@@ -2,3 +2,19 @@
   font-size: 123.1%;
   font-weight: bold;
 }
+
+.tetris {
+  width: 200px;
+  height: 400px;
+}
+
+.tetris div {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+.tetris .full {
+  background: black;
+}
