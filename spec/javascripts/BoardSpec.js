@@ -223,22 +223,19 @@ describe("Board", function() {
       expect(board.getFallingPiece().rotate90).toHaveBeenCalled();
     });
 
-    describe("overlapping tests", function() {
-      beforeEach(function() {
-        // Create two columns on index 3 and 6
-        // leaving 2 empty square columns in between
-        _.each(board.getBody(), function(row) { row[3] = row[6] = 1; });
+    it("DOES NOT rotate falling piece if that overlaps blocks on the board", function() {
+      // Create two columns on index 3 and 6
+      // leaving 2 empty square columns in between
+      _.each(board.getBody(), function(row) { row[3] = row[6] = 1; });
 
-        // Create the stick piece and put it in between the columns
-        var theStick = new Piece(2);
-        board.piece = theStick;
-        board.setFallingPosition(0, 4);
-      });
+      // Create the stick piece and put it in between the columns
+      var theStick = new Piece(2);
+      board.piece = theStick;
+      board.setFallingPosition(0, 4);
 
-      it("DOES NOT rotate falling piece if that overlaps blocks on the board", function() {
-        board.rotatePiece90();
-        expect(board.getFallingPiece().getWidth()).toBe(1);
-      });
+      board.rotatePiece90();
+      expect(board.getFallingPiece().getWidth()).toBe(1);
     });
+
   });
 });
