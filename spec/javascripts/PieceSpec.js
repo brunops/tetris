@@ -18,11 +18,11 @@ describe("Piece", function() {
     });
 
     it("fourth shape represents the L piece", function() {
-      expect(Piece.shapes[3]).toEqual([[1, 0], [1, 0], [1, 0], [1, 1]]);
+      expect(Piece.shapes[3]).toEqual([[1, 0], [1, 0], [1, 1]]);
     });
 
     it("fifth shape represents the mirrored L piece", function() {
-      expect(Piece.shapes[4]).toEqual([[0, 1], [0, 1], [0, 1], [1, 1]]);
+      expect(Piece.shapes[4]).toEqual([[0, 1], [0, 1], [1, 1]]);
     });
 
     it("sixth shape represents the dog piece", function() {
@@ -66,7 +66,7 @@ describe("Piece", function() {
     describe(".rotate90() clockwise rotates 90 degrees", function() {
       it("calls are chainable", function() {
         var theL = new Piece(3);
-        expect(theL.rotate90().getBody()).toEqual([[1, 1, 1, 1], [1, 0, 0, 0]]);
+        expect(theL.rotate90().getBody()).toEqual([[1, 1, 1], [1, 0, 0]]);
       });
 
       it("Main shape is not affected by rotate", function() {
@@ -134,12 +134,12 @@ describe("Piece", function() {
 
       it("the L", function() {
         var theL = new Piece(3);
-        expect(theL.skirt()).toEqual([3, 3]);
+        expect(theL.skirt()).toEqual([2, 2]);
       });
 
       it("the mirrored L", function() {
         var theMirroredL = new Piece(4);
-        expect(theMirroredL.skirt()).toEqual([3, 3]);
+        expect(theMirroredL.skirt()).toEqual([2, 2]);
       });
 
       it("the dog", function() {
