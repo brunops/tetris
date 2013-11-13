@@ -105,7 +105,8 @@ Board.prototype.tick = function() {
   if (this.canPieceFall()) {
     this.position[0] += 1;
   }
-  else {
+
+  if (!this.canPieceFall()) {
     this.placeFallingPiece();
     this.triggerNextPiece();
   }
@@ -144,7 +145,7 @@ Board.prototype.canPieceFall = function() {
 
   for (var i = 0; i < pieceSkirt.length; ++i) {
     nextRowIndex = this.position[0] + pieceSkirt[i] + 1;
-    canPieceFall &= nextRowIndex < this.getHeight() && this.body[nextRowIndex][this.position[1]] === 0;
+    canPieceFall &= nextRowIndex < this.getHeight() && this.body[nextRowIndex][this.position[1] + i] === 0;
   }
 
   return !!canPieceFall;

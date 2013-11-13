@@ -95,10 +95,11 @@ describe("Board", function() {
 
     it("returns false if any next rows after piece skirt on the board are taken", function() {
       var theSquare = new Piece(1),
-          theSquarePlaceRowIndex = board.getHeight() - theSquare.getHeight();
+          theDog    = new Piece(5);
 
-      board.place(theSquare, theSquarePlaceRowIndex, 0);
-      board.setFallingPosition(theSquarePlaceRowIndex - board.getFallingPiece().getHeight(), 1);
+      board.piece = theSquare;
+      board.setFallingPosition(16, 0)
+      board.place(theDog, 18, 0);
 
       expect(board.canPieceFall()).toBeFalsy();
     });
