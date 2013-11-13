@@ -213,6 +213,14 @@ describe("Board", function() {
 
       expect(board.getFullBodyState()).toEqual(boardStateWithPieceOnBoundaries);
     });
+
+    it("does nothing if it would overlap some taken spot", function() {
+      var fallingColumn = board.getFallingPosition()[1];
+      // fill column before piece's falling position
+      _.each(board.getBody(), function(row) { row[fallingColumn + board.piece.getWidth()] = 1; });
+      board.movePieceRight();
+      expect(board.getFallingPosition()[1]).toBe(fallingColumn);
+    });
   });
 
   describe("#isFull", function() {
