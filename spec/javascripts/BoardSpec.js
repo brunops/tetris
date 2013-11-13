@@ -31,6 +31,16 @@ describe("Board", function() {
       }
     });
 
+    it("ignores pieces empty blocks when placing it into the board", function() {
+      var square = new Piece(1),
+          theT   = new Piece(0);
+
+      // place a square at the bottom of the board and fit the T on top of it
+      board.place(square, 18, 0);
+      board.place(theT, 17, 1);
+
+      expect(board.getBody()[18][1]).toBe(1);
+    });
   });
 
   it("has a current falling piece", function() {
