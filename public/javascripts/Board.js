@@ -194,7 +194,8 @@ Board.prototype.willPieceOverlap = function(piece, row, col) {
 Board.prototype.clearFullRows = function() {
   _.each(this.body, function(row, index) {
     if (!_.contains(row, 0)) {
-      this.body[index] = _.map(row, function(e) { return 0; });
+      this.body.splice(index, 1);
+      this.body.unshift(_.map(row, function() { return 0; }));
     }
   }, this);
 };

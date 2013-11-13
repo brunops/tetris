@@ -248,16 +248,25 @@ describe("Board", function() {
   });
 
   describe("#clearFullRows", function() {
-    it("clears all full rows (not a single empty square)", function() {
+    beforeEach(function() {
+      // fill 5 last rows
       _.each(board.getBody().slice(15), function(row) {
         for (var i = 0; i < row.length; i++) {
           row[i] = 1;
         }
       });
+    })
 
+    it("clears all full rows (not a single empty square)", function() {
       board.clearFullRows();
 
       expect(board.isEmpty()).toBeTruthy();
+    });
+
+    it("removes full rows in a way that the upper rows 'fall'", function() {
+      board.getBody()[14][0] = 1;
+      board.clearFullRows();
+      expect(board.getBody()[19][0]).toBe(1);
     });
   });
 });
