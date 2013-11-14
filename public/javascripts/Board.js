@@ -186,7 +186,7 @@ Board.prototype.isPieceOutOfBoundaries = function(piece, row, col) {
 Board.prototype.willPieceOverlap = function(piece, row, col) {
   for (var currentRow = 0; currentRow < piece.getHeight(); currentRow++) {
     for (var currentCol = 0; currentCol < piece.getWidth(); currentCol++) {
-      if (this.body[row + currentRow][col + currentCol]) {
+      if (this.body[row + currentRow][col + currentCol] && piece.getBody()[currentRow][currentCol]) {
         return true;
       }
     }

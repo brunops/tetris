@@ -187,13 +187,21 @@ describe("Board", function() {
 
     it("does nothing if it would overlap some taken spot", function() {
       var fallingColumn = board.getFallingPosition()[1];
-
-
       // fill column before piece's falling position
       _.each(board.getBody(), function(row) { row[fallingColumn - 1] = 3; });
-      board.printFullBodyState();
       board.movePieceLeft();
       expect(board.getFallingPosition()[1]).toBe(fallingColumn);
+    });
+
+    it("moves piece if the overlap happens in empty piece spots", function() {
+      var theStick = new Piece(2),
+          theL     = new Piece(3);
+
+      board.place(theStick, 16, 5);
+      board.piece = theL.rotate90().rotate90();
+      board.setFallingPosition(14, 6);
+      board.movePieceLeft();
+      expect(board.getFallingPosition()).toEqual([14, 5]);
     });
   });
 
