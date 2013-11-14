@@ -40,6 +40,10 @@ var Tetris = {
         Tetris.board.movePieceLeft();
         Tetris.render();
         break;
+      case Tetris.keyCodes.bottom:
+        Tetris.board.tick();
+        Tetris.render();
+        break;
       case Tetris.keyCodes.right:
         Tetris.board.movePieceRight();
         Tetris.render();
