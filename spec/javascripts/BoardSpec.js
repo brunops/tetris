@@ -132,6 +132,18 @@ describe("Board", function() {
       expect(board.getFullBodyState()).toEqual(board2.getBody());
     });
 
+    it("places piece only on next #tick, allowing user to move the piece when it's already sticked", function() {
+      var theDog = new Piece(5),
+          theMirroredL = new Piece(4);
+
+      board.place(theDog, 18, 0);
+      board.piece = theMirroredL;
+      board.setFallingPosition(16, 3);
+      board.tick();
+      board.movePieceLeft();
+      expect(board.getFallingPosition()).toEqual([17, 2]);
+    });
+
     describe("piece can't go further", function() {
       var fallingPiece, position;
 

@@ -109,8 +109,7 @@ Board.prototype.tick = function() {
   if (this.canPieceFall()) {
     this.position[0] += 1;
   }
-
-  if (!this.canPieceFall()) {
+  else {
     this.placeFallingPiece();
     this.clearFullRows();
     this.triggerNextPiece();
