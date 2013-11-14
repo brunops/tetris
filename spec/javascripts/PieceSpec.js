@@ -4,6 +4,13 @@ describe("Piece", function() {
     expect(Piece.shapes.length).toBe(7);
   });
 
+  it("has its on color id", function() {
+    for (var n = 0; n < Piece.shapes.length; n++) {
+      piece = new Piece(n);
+      expect(piece.getColorId()).toEqual(n + 1);
+    }
+  });
+
   describe("shapes", function() {
     it("first shape represents the T piece", function() {
       expect(Piece.shapes[0]).toEqual([[1, 1, 1], [0, 1, 0]]);

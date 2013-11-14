@@ -38,6 +38,10 @@ Piece.shapes = [
   ]
 ];
 
+Piece.prototype.getColorId = function() {
+  return this.shapeId + 1;
+};
+
 Piece.prototype.getBody = function() {
   return this.body;
 };
