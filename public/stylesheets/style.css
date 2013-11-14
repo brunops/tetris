@@ -4,20 +4,27 @@ body {
 }
 
 #ascii-title {
-  font-size: 123.1%;
+  font-size: 77%;
   font-weight: bold;
-  margin-left: 40%;
+  margin-left: 43%;
 }
 
 .tetris {
   background: #34495e;
-  width: 200px;
+  width: 269px;
+  padding: 1px;
+  margin: 0 auto;
 }
 
 .tetris div {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   display: inline-block;
+  border: 1px solid #3B5269;
+}
+
+.tetris .piece {
+  border: 1px solid black;
 }
 
 .tetris .full1 {
