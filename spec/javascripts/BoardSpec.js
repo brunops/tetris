@@ -187,8 +187,11 @@ describe("Board", function() {
 
     it("does nothing if it would overlap some taken spot", function() {
       var fallingColumn = board.getFallingPosition()[1];
+
+
       // fill column before piece's falling position
-      _.each(board.getBody(), function(row) { row[fallingColumn - 1] = 1; });
+      _.each(board.getBody(), function(row) { row[fallingColumn - 1] = 3; });
+      board.printFullBodyState();
       board.movePieceLeft();
       expect(board.getFallingPosition()[1]).toBe(fallingColumn);
     });
@@ -219,7 +222,7 @@ describe("Board", function() {
     it("does nothing if it would overlap some taken spot", function() {
       var fallingColumn = board.getFallingPosition()[1];
       // fill column before piece's falling position
-      _.each(board.getBody(), function(row) { row[fallingColumn + board.piece.getWidth()] = 1; });
+      _.each(board.getBody(), function(row) { row[fallingColumn + board.piece.getWidth()] = 3; });
       board.movePieceRight();
       expect(board.getFallingPosition()[1]).toBe(fallingColumn);
     });
