@@ -52,7 +52,7 @@ var Tetris = {
     var board = Tetris.board.getFullBodyState();
     for (var row = 0; row < board.length; ++row) {
       for (var col = 0; col < board[0].length; ++col) {
-        this.$el.append($('<div></div>').attr({class: (board[row][col] ? 'full' : '')}));
+        this.$el.append($('<div></div>').attr({class: (board[row][col] ? ('piece full' + board[row][col]) : '')}));
       }
     }
   }
