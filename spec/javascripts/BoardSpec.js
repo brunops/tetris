@@ -26,7 +26,9 @@ describe("Board", function() {
 
       for (var currentRow = 0; currentRow < piece.getHeight(); ++currentRow) {
         for (var currentCol = 0; currentCol < piece.getWidth(); ++currentCol) {
-          expect(board.getBody()[row + currentRow][col + currentCol]).toBe(piece.getBody()[currentRow][currentCol]);
+          if (piece.getBody()[currentRow][currentCol]) {
+            expect(board.getBody()[row + currentRow][col + currentCol]).toBe(piece.getColorId());
+          }
         }
       }
     });
@@ -39,7 +41,7 @@ describe("Board", function() {
       board.place(square, 18, 0);
       board.place(theT, 17, 1);
 
-      expect(board.getBody()[18][1]).toBe(1);
+      expect(board.getBody()[18][1]).toBe(square.getColorId());
     });
   });
 
@@ -87,7 +89,7 @@ describe("Board", function() {
       board.setFallingPosition(17, 1);
       board.place(theSquare, 18, 0);
 
-      expect(board.getFullBodyState()[18][1]).toBe(1);
+      expect(board.getFullBodyState()[18][1]).toBe(theSquare.getColorId());
     });
   });
 

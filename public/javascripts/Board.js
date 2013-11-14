@@ -35,7 +35,7 @@ Board.prototype.getFullBodyState = function() {
   for (var row = 0; row < this.piece.getHeight(); ++row) {
     for (var col = 0; col < this.piece.getWidth(); ++col) {
       if (this.piece.getBody()[row][col]) {
-        bodyClone[fallingPosition[0] + row][fallingPosition[1] + col] = this.piece.getBody()[row][col];
+        bodyClone[fallingPosition[0] + row][fallingPosition[1] + col] = this.piece.getColorId();
       }
     }
   }
@@ -65,7 +65,9 @@ Board.prototype.place = function(piece, row, col) {
   for (var currentRow = 0; currentRow < piece.getHeight(); ++currentRow) {
     for (var currentCol = 0; currentCol < piece.getWidth(); ++currentCol) {
       if (this.body[row + currentRow][col + currentCol] === 0) {
-        this.body[row + currentRow][col + currentCol] = piece.getBody()[currentRow][currentCol];
+        if (piece.getBody()[currentRow][currentCol]) {
+          this.body[row + currentRow][col + currentCol] = piece.getColorId();
+        }
       }
     }
   }
