@@ -25,8 +25,10 @@ var Tetris = {
         alert('GAME OVER!')
         clearInterval(gameInterval);
       }
-      Tetris.board.tick();
-      Tetris.render();
+      else {
+        Tetris.board.tick();
+        Tetris.render();
+      }
     }, 400)
   },
 
@@ -41,8 +43,10 @@ var Tetris = {
         Tetris.render();
         break;
       case Tetris.keyCodes.bottom:
-        Tetris.board.tick();
-        Tetris.render();
+        if (!Tetris.board.isFull()) {
+          Tetris.board.tick();
+          Tetris.render();
+        }
         break;
       case Tetris.keyCodes.right:
         Tetris.board.movePieceRight();
