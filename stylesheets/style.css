@@ -1,8 +1,3 @@
-body {
-  background: #2c3e50;
-  color: #ecf0f1;
-}
-
 #ascii-title {
   font-size: 77%;
   font-weight: bold;
@@ -14,6 +9,7 @@ body {
   width: 270px;
   padding: 1px;
   margin: 0 auto;
+  font-size: 0;
 }
 
 .tetris div {

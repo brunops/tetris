@@ -37,6 +37,7 @@ var Tetris = {
       case Tetris.keyCodes.top:
         Tetris.board.rotatePiece90();
         Tetris.render();
+        return false;
         break;
       case Tetris.keyCodes.left:
         Tetris.board.movePieceLeft();
@@ -47,6 +48,7 @@ var Tetris = {
           Tetris.board.tick();
           Tetris.render();
         }
+        return false;
         break;
       case Tetris.keyCodes.right:
         Tetris.board.movePieceRight();
