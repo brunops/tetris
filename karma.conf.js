@@ -15,14 +15,14 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'spec/**/*.js',
-      'public/**/*.js'
+      'javascripts/**/*.js'
     ],
 
 
     // list of files to exclude
     exclude: [
-      'public/**/Tetris.js',
-      'public/**/main.js'
+      'javascripts/Tetris.js',
+      'javascripts/main.js'
     ],
 
 
