@@ -2,4 +2,4 @@
 
 Tetris game using TDD and OOP.
 
-Check it online at [heroku](http://tetristdd.herokuapp.com).
+Check it online [here](http://brunops.org/projects/tetris).
