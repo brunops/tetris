@@ -364,19 +364,31 @@ describe("Board", function() {
     });
   });
 
-  describe("#getNextWorstPiece", function() {
-    it("returns the Square if row has only one empty spot", function() {
+  describe("#getNextWorstPieces", function() {
+    var lastRow, theL, theSquare;
+
+    beforeEach(function() {
       // Fill last row
-      _.each(board.getBody().slice(19), function(row) {
-        for (var i = 0; i < row.length; i++) {
-          row[i] = 1;
-        }
+      lastRow = board.getBody()[19];
+      for (var i = 0; i < lastRow.length; i++) {
+        lastRow[i] = 1;
+      }
 
-        // force one empty spot
-        row[5] = 0;
-      });
+      theL = new Piece(3);
+      theSquare = new Piece(1);
+    });
 
-      expect(board.getNextWorstPiece().getBody()).toEqual([[1, 1], [1, 1]]);
+    it("returns the L if row has only one empty spot", function() {
+      lastRow[5] = 0;
+
+      expect(board.getNextWorstPieces()).toContain(theL);
+    });
+
+    it("does not return a square if there's only two empty spots in the same row", function() {
+      lastRow[0] = 0;
+      lastRow[1] = 0;
+
+      expect(board.getNextWorstPieces()).not.toContain(theSquare);
     });
   });
 });

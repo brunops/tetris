@@ -121,7 +121,7 @@ Board.prototype.placeFallingPiece = function() {
 };
 
 Board.prototype.triggerNextPiece = function() {
-  this.piece = new Piece();
+  this.piece = _.shuffle(this.getNextWorstPieces())[0];
   this.position = this.getStartPosition();
 };
 
@@ -203,34 +203,59 @@ Board.prototype.clearFullRows = function() {
   }, this);
 };
 
-Board.prototype.getNextWorstPiece = function() {
-  return new Piece(1);
+Board.prototype.getNextWorstPieces = function() {
+  var worstPieces = [],
+      currentPiece,
+      currentPieceScore,
+      pieceScore = 0;
+
+  for (var i = 0; i < Piece.shapes.length; i++) {
+    currentPiece = new Piece(i);
+    currentPieceScore = this.getPieceScore(currentPiece);
+
+    if (currentPieceScore === pieceScore) {
+      worstPieces.push(currentPiece);
+    }
+
+    if (currentPieceScore > pieceScore) {
+      pieceScore = Math.max(pieceScore, currentPieceScore);
+      worstPieces = [currentPiece];
+    }
+  }
+
+  return worstPieces;
 };
 
 Board.prototype.getPieceScore = function(piece) {
   var boardClone = new Board(),
       pieceScore = Infinity;
 
-  for (var col = 0; col <= boardClone.getWidth() - piece.getWidth(); col++) {
-    boardClone.body = this.getFullBodyDeepClone();
-    boardClone.piece = piece;
-    boardClone.setFallingPosition(0, col);
+  for (var orietations = 0; orietations < 4; orietations++) {
+    piece.rotate90();
 
-    while (boardClone.canPieceFall()) {
-      boardClone.tick();
-    }
-    boardClone.tick();
+    for (var col = 0; col <= boardClone.getWidth() - piece.getWidth(); col++) {
+      boardClone.body = this.getFullBodyDeepClone();
+      boardClone.piece = piece;
+      boardClone.setFallingPosition(0, col);
 
-    for (var i = 0; i < boardClone.getHeight(); i++) {
-      if (!_.every(boardClone.getBody()[i], function(el) { return el === 0; })) {
-        var currentPieceScore = boardClone.getHeight() - i;
+      while (boardClone.canPieceFall()) {
+        boardClone.tick();
+      }
+      boardClone.placeFallingPiece();
+      boardClone.clearFullRows();
 
-        pieceScore = Math.min(currentPieceScore, pieceScore);
+      for (var i = 0; i < boardClone.getHeight(); i++) {
+        if (!_.every(boardClone.getBody()[i], function(el) { return el === 0; })) {
+          var currentPieceScore = boardClone.getHeight() - i;
 
-        break;
+          pieceScore = Math.min(currentPieceScore, pieceScore);
+
+          break;
+        }
       }
     }
   }
+
 
   return pieceScore;
 };
