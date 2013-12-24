@@ -386,7 +386,7 @@ describe("Board", function() {
   });
 
   describe("#getNextWorstPieces", function() {
-    var lastRow, theL, theSquare;
+    var lastRow, theSquare;
 
     beforeEach(function() {
       // Fill last row
