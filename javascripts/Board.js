@@ -230,7 +230,7 @@ Board.prototype.getPieceScore = function(piece) {
   var boardClone = new Board(),
       pieceScore = Infinity;
 
-  for (var orietations = 0; orietations < 4; orietations++) {
+  for (var orientations = 0; orientations < 4; orientations++) {
     piece.rotate90();
 
     for (var col = 0; col <= boardClone.getWidth() - piece.getWidth(); col++) {
