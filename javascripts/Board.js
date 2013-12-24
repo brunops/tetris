@@ -20,6 +20,8 @@ Board.prototype.init = function() {
   this.height = 20;
   this.body = this.generateBody();
 
+  this.difficulty = 20;
+
   this.piece = new Piece();
   this.position = this.getStartPosition();
 };
@@ -121,7 +123,15 @@ Board.prototype.placeFallingPiece = function() {
 };
 
 Board.prototype.triggerNextPiece = function() {
-  this.piece = new Piece();
+  var triggerWorstPiece = Math.floor(Math.random() * 100) < this.getDifficulty();
+
+  if (triggerWorstPiece) {
+    this.piece = _.shuffle(this.getNextWorstPieces())[0];
+  }
+  else {
+    this.piece = new Piece();
+  }
+
   this.position = this.getStartPosition();
 };
 
@@ -201,4 +211,76 @@ Board.prototype.clearFullRows = function() {
       this.body.unshift(_.map(row, function() { return 0; }));
     }
   }, this);
+};
+
+Board.prototype.getMaxTakenHeight = function() {
+  var maxTakenHeight = Infinity;
+
+  for (var i = 0; i < this.getHeight(); i++) {
+    var rowNotEmpty = !_.every(this.getBody()[i], function(el) { return el === 0; });
+
+    if (rowNotEmpty) {
+      maxTakenHeight = Math.min(this.getHeight() - i, maxTakenHeight);
+      break;
+    }
+  }
+
+  return maxTakenHeight !== Infinity ? maxTakenHeight : 0;
+};
+
+Board.prototype.getNextWorstPieces = function() {
+  var worstPieces = [],
+      currentPiece,
+      currentPieceScore,
+      pieceScore = 0;
+
+  for (var i = 0; i < Piece.shapes.length; i++) {
+    currentPiece = new Piece(i);
+    currentPieceScore = this.getPieceScore(currentPiece);
+
+    if (currentPieceScore === pieceScore) {
+      worstPieces.push(currentPiece);
+    }
+
+    if (currentPieceScore > pieceScore) {
+      pieceScore = Math.max(pieceScore, currentPieceScore);
+      worstPieces = [currentPiece];
+    }
+  }
+
+  return worstPieces;
+};
+
+Board.prototype.getPieceScore = function(piece) {
+  var boardClone = new Board(),
+      pieceScore = Infinity;
+
+  for (var orientations = 0; orientations < 4; orientations++) {
+    piece.rotate90();
+
+    for (var col = 0; col <= boardClone.getWidth() - piece.getWidth(); col++) {
+      boardClone.body = this.getFullBodyDeepClone();
+      boardClone.piece = piece;
+      boardClone.setFallingPosition(0, col);
+
+      while (boardClone.canPieceFall()) {
+        boardClone.tick();
+      }
+      boardClone.placeFallingPiece();
+      boardClone.clearFullRows();
+
+      pieceScore = Math.min(boardClone.getMaxTakenHeight(), pieceScore);
+    }
+  }
+
+  return pieceScore;
+};
+
+Board.prototype.setDifficulty = function(difficulty) {
+  this.difficulty = Math.min(100, Math.max(0, difficulty));
+};
+
+
+Board.prototype.getDifficulty = function() {
+  return this.difficulty;
 };

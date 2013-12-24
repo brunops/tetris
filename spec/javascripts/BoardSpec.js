@@ -312,7 +312,187 @@ describe("Board", function() {
     it("removes full rows in a way that the upper rows 'fall'", function() {
       board.getBody()[14][0] = 1;
       board.clearFullRows();
-      expect(board.getBody()[19][0]).toBe(1);
+      expect(board.getBody()[board.getHeight() - 1][0]).toBe(1);
+    });
+  });
+
+  describe("#getMaxTakenHeight", function() {
+    it("returns 0 for empty board", function() {
+      expect(board.getMaxTakenHeight()).toBe(0);
+    });
+
+    it("returns 1 when there's a taken spot on last row", function() {
+      board.getBody()[board.getHeight() - 1][5] = 1;
+      expect(board.getMaxTakenHeight()).toBe(1);
+    });
+
+    it("returns 5 when there's a taken spot on fifth row from bottom up", function() {
+      board.getBody()[board.getHeight() - 1][5] = 1;
+      expect(board.getMaxTakenHeight()).toBe(1);
+    });
+
+    it("returns board height when board is completely taken", function() {
+      board.getBody()[0][3] = 1;
+      expect(board.getMaxTakenHeight()).toBe(board.getHeight());
+    });
+  });
+
+  describe("#getPieceScore", function() {
+    var theStick, square, lastRow;
+
+    beforeEach(function() {
+      // Fill last row
+      lastRow = board.getBody()[board.getHeight() - 1];
+      for (var i = 0; i < lastRow.length; i++) {
+        lastRow[i] = 1;
+      }
+
+      square = new Piece(1);
+      theStick = new Piece(2);
+    });
+
+    it("score of square is 2 for an empty board", function() {
+      expect(board.getPieceScore(square)).toBe(2);
+    });
+
+    it("score of the stick is 1 for an empty board", function() {
+      expect(board.getPieceScore(theStick)).toBe(1);
+    });
+
+    it("score of square is 3 for a board with only one empty spot in last row", function() {
+      // force one empty spot
+      lastRow[5] = 0;
+
+      expect(board.getPieceScore(square)).toBe(3);
+    });
+
+    it("returns the best piece score when first tested position", function() {
+      // force best position to be the first one
+      lastRow[0] = 0;
+      lastRow[1] = 0;
+      lastRow[2] = 0;
+
+      expect(board.getPieceScore(square)).toBe(2);
+    });
+
+    it("returns the best piece score when in the last possible column", function() {
+      // force best position to be the last one
+      lastRow[6] = 0;
+      lastRow[8] = 0;
+      lastRow[9] = 0;
+
+      expect(board.getPieceScore(square)).toBe(2);
+    });
+  });
+
+  describe("#getNextWorstPieces", function() {
+    var lastRow, theSquare;
+
+    beforeEach(function() {
+      // Fill last row
+      lastRow = board.getBody()[board.getHeight() - 1];
+      for (var i = 0; i < lastRow.length; i++) {
+        lastRow[i] = 1;
+      }
+
+      theSquare = new Piece(1);
+    });
+
+    it("returns the square if row has only one empty spot", function() {
+      lastRow[5] = 0;
+
+      expect(board.getNextWorstPieces()).toContain(theSquare);
+    });
+
+    it("does not return a square if there's only two empty spots in the same row", function() {
+      lastRow[0] = 0;
+      lastRow[1] = 0;
+
+      expect(board.getNextWorstPieces()).not.toContain(theSquare);
+    });
+  });
+
+  describe("#setDifficulty", function() {
+    it("sets difficulty property in board object", function() {
+      board.setDifficulty(10);
+      expect(board.difficulty).toBe(10);
+    });
+
+    it("sets difficulty as 0 if a negative number is passed", function() {
+      board.setDifficulty(-100);
+      expect(board.difficulty).toBe(0);
+    });
+
+    it("sets difficulty as 100 if a greater number is passed", function() {
+      board.setDifficulty(300);
+      expect(board.difficulty).toBe(100);
+    });
+  });
+
+  describe("#getDifficulty", function() {
+    it("returns default percentage (20%) for a new board", function() {
+      expect(board.getDifficulty()).toBe(20);
+    });
+
+    it("returns 'difficulty' board property", function() {
+      board.setDifficulty(40);
+      expect(board.getDifficulty()).toBe(40);
+    });
+  });
+
+  describe("#triggerNextPiece", function() {
+    it("sets a new falling piece", function() {
+      var oldPiece = board.getFallingPiece();
+      board.triggerNextPiece();
+
+      expect(board.piece).not.toBe(oldPiece);
+    });
+
+    it("sets falling position as the default position", function() {
+      var defaultFaullingPosition = board.getFallingPosition().slice();
+
+      board.tick();
+      board.triggerNextPiece();
+
+      expect(board.getFallingPosition()).toEqual(defaultFaullingPosition);
+    });
+
+    it("when difficulty is set to 0 next falling piece is always random", function() {
+      spyOn(board, 'getNextWorstPieces');
+      board.setDifficulty(0);
+      board.triggerNextPiece();
+      expect(board.getNextWorstPieces).not.toHaveBeenCalled();
+    });
+
+    it("when difficulty is set to 100 next falling piece is always the worst", function() {
+      spyOn(board, 'getNextWorstPieces');
+      board.setDifficulty(100);
+      board.triggerNextPiece();
+      expect(board.getNextWorstPieces).toHaveBeenCalled();
+    });
+
+    describe("triggers worst piece half of the time when difficulty === 50%", function() {
+      beforeEach(function() {
+        board.setDifficulty(50);
+        spyOn(board, 'getNextWorstPieces');
+      });
+
+      it("triggers worst piece when Math.random returns 0", function() {
+        spyOn(Math, 'random').andReturn(0);
+        board.triggerNextPiece();
+        expect(board.getNextWorstPieces).toHaveBeenCalled();
+      });
+
+      it("does not trigger worst piece when Math.random returns 1", function() {
+        spyOn(Math, 'random').andReturn(1);
+        board.triggerNextPiece();
+        expect(board.getNextWorstPieces).not.toHaveBeenCalled();
+      });
     });
   });
 });
+
+
+
+
+
