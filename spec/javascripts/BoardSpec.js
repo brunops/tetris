@@ -345,7 +345,7 @@ describe("Board", function() {
       expect(board.getPieceScore(square)).toBe(3);
     });
 
-    it("returns the best piece score even if it's the first tested position", function() {
+    it("returns the best piece score when first tested position", function() {
       // force best position to be the first one
       lastRow[0] = 0;
       lastRow[1] = 0;
@@ -354,7 +354,7 @@ describe("Board", function() {
       expect(board.getPieceScore(square)).toBe(2);
     });
 
-    it("returns the best piece score event if it's in the last possible column", function() {
+    it("returns the best piece score when in the last possible column", function() {
       // force best position to be the last one
       lastRow[6] = 0;
       lastRow[8] = 0;
