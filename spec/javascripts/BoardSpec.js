@@ -315,4 +315,25 @@ describe("Board", function() {
       expect(board.getBody()[19][0]).toBe(1);
     });
   });
+
+  describe("#getNextWorstPiece", function() {
+    it("returns the Square if row has only one empty spot", function() {
+      // Fill last row
+      _.each(board.getBody().slice(19), function(row) {
+        for (var i = 0; i < row.length; i++) {
+          row[i] = 1;
+        }
+
+        // force one empty spot
+        row[5] = 0;
+      });
+
+      expect(board.getNextWorstPiece().getBody()).toEqual([[1, 1], [1, 1]]);
+    });
+  });
 });
+
+
+
+
+

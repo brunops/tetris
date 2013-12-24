@@ -202,3 +202,10 @@ Board.prototype.clearFullRows = function() {
     }
   }, this);
 };
+
+Board.prototype.getNextWorstPiece = function() {
+  return new Piece(1);
+};
+
+
+
