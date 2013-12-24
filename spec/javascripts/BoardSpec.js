@@ -335,7 +335,7 @@ describe("Board", function() {
     });
 
     it("score of the stick is 1 for an empty board", function() {
-      expect(board.getPieceScore(theStick)).toBe(4);
+      expect(board.getPieceScore(theStick)).toBe(1);
     });
 
     it("score of square is 3 for a board with only one empty spot in last row", function() {
@@ -374,14 +374,13 @@ describe("Board", function() {
         lastRow[i] = 1;
       }
 
-      theL = new Piece(3);
       theSquare = new Piece(1);
     });
 
-    it("returns the L if row has only one empty spot", function() {
+    it("returns the square if row has only one empty spot", function() {
       lastRow[5] = 0;
 
-      expect(board.getNextWorstPieces()).toContain(theL);
+      expect(board.getNextWorstPieces()).toContain(theSquare);
     });
 
     it("does not return a square if there's only two empty spots in the same row", function() {
