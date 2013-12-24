@@ -316,6 +316,27 @@ describe("Board", function() {
     });
   });
 
+  describe("#getMaxTakenHeight", function() {
+    it("returns 0 for empty board", function() {
+      expect(board.getMaxTakenHeight()).toBe(0);
+    });
+
+    it("returns 1 when there's a taken spot on last row", function() {
+      board.getBody()[19][5] = 1;
+      expect(board.getMaxTakenHeight()).toBe(1);
+    });
+
+    it("returns 5 when there's a taken spot on fifth row from bottom up", function() {
+      board.getBody()[19][5] = 1;
+      expect(board.getMaxTakenHeight()).toBe(1);
+    });
+
+    it("returns board height when board is completely taken", function() {
+      board.getBody()[0][3] = 1;
+      expect(board.getMaxTakenHeight()).toBe(board.getHeight());
+    });
+  });
+
   describe("#getPieceScore", function() {
     var theStick, square, lastRow;
 

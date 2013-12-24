@@ -203,6 +203,23 @@ Board.prototype.clearFullRows = function() {
   }, this);
 };
 
+Board.prototype.getMaxTakenHeight = function(board) {
+  board = board || this;
+
+  var maxTakenHeight = Infinity;
+
+  for (var i = 0; i < board.getHeight(); i++) {
+    var rowNotEmpty = !_.every(board.getBody()[i], function(el) { return el === 0; });
+
+    if (rowNotEmpty) {
+      maxTakenHeight = Math.min(board.getHeight() - i, maxTakenHeight);
+      break;
+    }
+  }
+
+  return maxTakenHeight !== Infinity ? maxTakenHeight : 0;
+};
+
 Board.prototype.getNextWorstPieces = function() {
   var worstPieces = [],
       currentPiece,
