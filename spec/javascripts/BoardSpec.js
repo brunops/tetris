@@ -312,7 +312,7 @@ describe("Board", function() {
     it("removes full rows in a way that the upper rows 'fall'", function() {
       board.getBody()[14][0] = 1;
       board.clearFullRows();
-      expect(board.getBody()[19][0]).toBe(1);
+      expect(board.getBody()[board.getHeight() - 1][0]).toBe(1);
     });
   });
 
@@ -322,12 +322,12 @@ describe("Board", function() {
     });
 
     it("returns 1 when there's a taken spot on last row", function() {
-      board.getBody()[19][5] = 1;
+      board.getBody()[board.getHeight() - 1][5] = 1;
       expect(board.getMaxTakenHeight()).toBe(1);
     });
 
     it("returns 5 when there's a taken spot on fifth row from bottom up", function() {
-      board.getBody()[19][5] = 1;
+      board.getBody()[board.getHeight() - 1][5] = 1;
       expect(board.getMaxTakenHeight()).toBe(1);
     });
 
@@ -342,7 +342,7 @@ describe("Board", function() {
 
     beforeEach(function() {
       // Fill last row
-      lastRow = board.getBody()[19];
+      lastRow = board.getBody()[board.getHeight() - 1];
       for (var i = 0; i < lastRow.length; i++) {
         lastRow[i] = 1;
       }
@@ -390,7 +390,7 @@ describe("Board", function() {
 
     beforeEach(function() {
       // Fill last row
-      lastRow = board.getBody()[19];
+      lastRow = board.getBody()[board.getHeight() - 1];
       for (var i = 0; i < lastRow.length; i++) {
         lastRow[i] = 1;
       }
