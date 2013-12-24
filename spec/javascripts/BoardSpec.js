@@ -316,6 +316,54 @@ describe("Board", function() {
     });
   });
 
+  describe("#getPieceScore", function() {
+    var theStick, square, lastRow;
+
+    beforeEach(function() {
+      // Fill last row
+      lastRow = board.getBody()[19];
+      for (var i = 0; i < lastRow.length; i++) {
+        lastRow[i] = 1;
+      }
+
+      square = new Piece(1);
+      theStick = new Piece(2);
+    });
+
+    it("score of square is 2 for an empty board", function() {
+      expect(board.getPieceScore(square)).toBe(2);
+    });
+
+    it("score of the stick is 1 for an empty board", function() {
+      expect(board.getPieceScore(theStick)).toBe(4);
+    });
+
+    it("score of square is 3 for a board with only one empty spot in last row", function() {
+      // force one empty spot
+      lastRow[5] = 0;
+
+      expect(board.getPieceScore(square)).toBe(3);
+    });
+
+    it("returns the best piece score even if it's the first tested position", function() {
+      // force best position to be the first one
+      lastRow[0] = 0;
+      lastRow[1] = 0;
+      lastRow[2] = 0;
+
+      expect(board.getPieceScore(square)).toBe(2);
+    });
+
+    it("returns the best piece score event if it's in the last possible column", function() {
+      // force best position to be the last one
+      lastRow[6] = 0;
+      lastRow[8] = 0;
+      lastRow[9] = 0;
+
+      expect(board.getPieceScore(square)).toBe(2);
+    });
+  });
+
   describe("#getNextWorstPiece", function() {
     it("returns the Square if row has only one empty spot", function() {
       // Fill last row

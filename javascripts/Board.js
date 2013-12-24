@@ -207,5 +207,32 @@ Board.prototype.getNextWorstPiece = function() {
   return new Piece(1);
 };
 
+Board.prototype.getPieceScore = function(piece) {
+  var boardClone = new Board(),
+      pieceScore = Infinity;
+
+  for (var col = 0; col <= boardClone.getWidth() - piece.getWidth(); col++) {
+    boardClone.body = this.getFullBodyDeepClone();
+    boardClone.piece = piece;
+    boardClone.setFallingPosition(0, col);
+
+    while (boardClone.canPieceFall()) {
+      boardClone.tick();
+    }
+    boardClone.tick();
+
+    for (var i = 0; i < boardClone.getHeight(); i++) {
+      if (!_.every(boardClone.getBody()[i], function(el) { return el === 0; })) {
+        var currentPieceScore = boardClone.getHeight() - i;
+
+        pieceScore = Math.min(currentPieceScore, pieceScore);
+
+        break;
+      }
+    }
+  }
+
+  return pieceScore;
+};
 
 
