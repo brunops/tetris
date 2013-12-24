@@ -203,16 +203,14 @@ Board.prototype.clearFullRows = function() {
   }, this);
 };
 
-Board.prototype.getMaxTakenHeight = function(board) {
-  board = board || this;
-
+Board.prototype.getMaxTakenHeight = function() {
   var maxTakenHeight = Infinity;
 
-  for (var i = 0; i < board.getHeight(); i++) {
-    var rowNotEmpty = !_.every(board.getBody()[i], function(el) { return el === 0; });
+  for (var i = 0; i < this.getHeight(); i++) {
+    var rowNotEmpty = !_.every(this.getBody()[i], function(el) { return el === 0; });
 
     if (rowNotEmpty) {
-      maxTakenHeight = Math.min(board.getHeight() - i, maxTakenHeight);
+      maxTakenHeight = Math.min(this.getHeight() - i, maxTakenHeight);
       break;
     }
   }
@@ -261,15 +259,7 @@ Board.prototype.getPieceScore = function(piece) {
       boardClone.placeFallingPiece();
       boardClone.clearFullRows();
 
-      for (var i = 0; i < boardClone.getHeight(); i++) {
-        if (!_.every(boardClone.getBody()[i], function(el) { return el === 0; })) {
-          var currentPieceScore = boardClone.getHeight() - i;
-
-          pieceScore = Math.min(currentPieceScore, pieceScore);
-
-          break;
-        }
-      }
+      pieceScore = Math.min(boardClone.getMaxTakenHeight(), pieceScore);
     }
   }
 
