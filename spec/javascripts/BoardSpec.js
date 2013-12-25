@@ -439,6 +439,24 @@ describe("Board", function() {
       expect(board.getDifficulty()).toBe(40);
     });
   });
+
+  describe("#triggerNextPiece", function() {
+    it("sets a new falling piece", function() {
+      var oldPiece = board.getFallingPiece();
+      board.triggerNextPiece();
+
+      expect(board.piece).not.toBe(oldPiece);
+    });
+
+    it("sets falling position as the default position", function() {
+      var defaultFaullingPosition = board.getFallingPosition().slice();
+
+      board.tick();
+      board.triggerNextPiece();
+
+      expect(board.getFallingPosition()).toEqual(defaultFaullingPosition);
+    });
+  });
 });
 
 
