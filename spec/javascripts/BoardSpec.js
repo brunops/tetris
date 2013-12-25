@@ -422,6 +422,11 @@ describe("Board", function() {
       board.setDifficulty(-100);
       expect(board.difficulty).toBe(0);
     });
+
+    it("sets difficulty as 100 if a greater number is passed", function() {
+      board.setDifficulty(300);
+      expect(board.difficulty).toBe(100);
+    });
   });
 });
 
