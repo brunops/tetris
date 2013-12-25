@@ -123,7 +123,15 @@ Board.prototype.placeFallingPiece = function() {
 };
 
 Board.prototype.triggerNextPiece = function() {
-  this.piece = _.shuffle(this.getNextWorstPieces())[0];
+  var triggerWorstPiece = Math.floor(Math.random() * 100) < this.getDifficulty();
+
+  if (triggerWorstPiece) {
+    this.piece = _.shuffle(this.getNextWorstPieces())[0];
+  }
+  else {
+    this.piece = new Piece();
+  }
+
   this.position = this.getStartPosition();
 };
 

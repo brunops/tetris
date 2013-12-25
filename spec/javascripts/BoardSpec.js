@@ -456,6 +456,39 @@ describe("Board", function() {
 
       expect(board.getFallingPosition()).toEqual(defaultFaullingPosition);
     });
+
+    it("when difficulty is set to 0 next falling piece is always random", function() {
+      spyOn(board, 'getNextWorstPieces');
+      board.setDifficulty(0);
+      board.triggerNextPiece();
+      expect(board.getNextWorstPieces).not.toHaveBeenCalled();
+    });
+
+    it("when difficulty is set to 100 next falling piece is always the worst", function() {
+      spyOn(board, 'getNextWorstPieces');
+      board.setDifficulty(100);
+      board.triggerNextPiece();
+      expect(board.getNextWorstPieces).toHaveBeenCalled();
+    });
+
+    describe("triggers worst piece half of the time when difficulty === 50%", function() {
+      beforeEach(function() {
+        board.setDifficulty(50);
+        spyOn(board, 'getNextWorstPieces');
+      });
+
+      it("triggers worst piece when Math.random returns 0", function() {
+        spyOn(Math, 'random').andReturn(0);
+        board.triggerNextPiece();
+        expect(board.getNextWorstPieces).toHaveBeenCalled();
+      });
+
+      it("does not trigger worst piece when Math.random returns 1", function() {
+        spyOn(Math, 'random').andReturn(1);
+        board.triggerNextPiece();
+        expect(board.getNextWorstPieces).not.toHaveBeenCalled();
+      });
+    });
   });
 });
 
