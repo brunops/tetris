@@ -20,6 +20,8 @@ Board.prototype.init = function() {
   this.height = 20;
   this.body = this.generateBody();
 
+  this.difficulty = 20;
+
   this.piece = new Piece();
   this.position = this.getStartPosition();
 };
@@ -268,4 +270,9 @@ Board.prototype.getPieceScore = function(piece) {
 
 Board.prototype.setDifficulty = function(difficulty) {
   this.difficulty = Math.min(100, Math.max(0, difficulty));
+};
+
+
+Board.prototype.getDifficulty = function() {
+  return this.difficulty;
 };

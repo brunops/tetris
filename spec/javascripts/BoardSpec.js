@@ -428,6 +428,17 @@ describe("Board", function() {
       expect(board.difficulty).toBe(100);
     });
   });
+
+  describe("#getDifficulty", function() {
+    it("returns default percentage (20%) for a new board", function() {
+      expect(board.getDifficulty()).toBe(20);
+    });
+
+    it("returns 'difficulty' board property", function() {
+      board.setDifficulty(40);
+      expect(board.getDifficulty()).toBe(40);
+    });
+  });
 });
 
 
