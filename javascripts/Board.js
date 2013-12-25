@@ -267,5 +267,5 @@ Board.prototype.getPieceScore = function(piece) {
 };
 
 Board.prototype.setDifficulty = function(difficulty) {
-  this.difficulty = difficulty;
+  this.difficulty = Math.max(0, difficulty);
 };

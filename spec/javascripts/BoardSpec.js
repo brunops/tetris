@@ -417,6 +417,11 @@ describe("Board", function() {
       board.setDifficulty(10);
       expect(board.difficulty).toBe(10);
     });
+
+    it("sets difficulty as 0 if a negative number is passed", function() {
+      board.setDifficulty(-100);
+      expect(board.difficulty).toBe(0);
+    });
   });
 });
 
