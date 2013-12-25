@@ -263,8 +263,9 @@ Board.prototype.getPieceScore = function(piece) {
     }
   }
 
-
   return pieceScore;
 };
 
-
+Board.prototype.setDifficulty = function(difficulty) {
+  this.difficulty = difficulty;
+};

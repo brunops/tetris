@@ -411,6 +411,13 @@ describe("Board", function() {
       expect(board.getNextWorstPieces()).not.toContain(theSquare);
     });
   });
+
+  describe("#setDifficulty", function() {
+    it("sets difficulty property in board object", function() {
+      board.setDifficulty(10);
+      expect(board.difficulty).toBe(10);
+    });
+  });
 });
 
 
