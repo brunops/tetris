@@ -36,20 +36,24 @@ var Tetris = {
     switch (e.keyCode) {
       case Tetris.keyCodes.top:
         Tetris.board.rotatePiece90();
+        e.preventDefault();
         Tetris.render();
         break;
       case Tetris.keyCodes.left:
         Tetris.board.movePieceLeft();
+        e.preventDefault();
         Tetris.render();
         break;
       case Tetris.keyCodes.bottom:
         if (!Tetris.board.isFull()) {
           Tetris.board.tick();
+          e.preventDefault();
           Tetris.render();
         }
         break;
       case Tetris.keyCodes.right:
         Tetris.board.movePieceRight();
+        e.preventDefault();
         Tetris.render();
         break;
     }
