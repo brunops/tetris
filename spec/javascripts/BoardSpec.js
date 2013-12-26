@@ -291,6 +291,20 @@ describe("Board", function() {
       board.rotatePiece90();
       expect(board.getFallingPosition()).toEqual([0, 6]);
     });
+
+    it("does not rotate piece if trying to place it makes it go out of boundaries on the left", function() {
+      // Place stick piece at the bottom left
+      var theStick = new Piece(2);
+      board.place(theStick, 16, 2)
+
+
+      var theL = new Piece(3);
+      board.piece = theL;
+      board.setFallingPosition(16, 0);
+      board.rotatePiece90();
+
+      expect(board.getFallingPosition()).toEqual([16, 0]);
+    });
   });
 
   describe("#clearFullRows", function() {

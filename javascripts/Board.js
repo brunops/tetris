@@ -189,7 +189,7 @@ Board.prototype.rotatePiece90 = function() {
 };
 
 Board.prototype.isPieceOutOfBoundaries = function(piece, row, col) {
-  return (col + piece.getWidth() > this.getWidth());
+  return (col < 0) || (col + piece.getWidth() > this.getWidth());
 };
 
 Board.prototype.willPieceOverlap = function(piece, row, col) {
