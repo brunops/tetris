@@ -8,8 +8,8 @@ var Tetris = {
     left: 37
   },
 
-  init: function() {
-    this.$el = $('.tetris');
+  init: function(selector) {
+    this.$el = $(selector);
 
     this.bind();
     this.start();

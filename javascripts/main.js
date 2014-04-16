@@ -1,3 +1,3 @@
 $(function() {
-  Tetris.init();
+  Tetris.init('.tetris');
 });
